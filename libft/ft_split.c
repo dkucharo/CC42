@@ -6,9 +6,14 @@
 /*   By: danielakucharova <danielakucharova@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 17:52:03 by danielakuch       #+#    #+#             */
-/*   Updated: 2025/11/23 17:52:04 by danielakuch      ###   ########.fr       */
+/*   Updated: 2025/11/26 21:29:57 by danielakuch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+//Allocates memory (using malloc(3)) and returns an
+// array of strings obtained by splitting ’s’ using
+// the character ’c’ as a delimiter. The array must
+//end with a NULL pointer.
 
 #include "libft.h"
 

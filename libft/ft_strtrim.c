@@ -6,9 +6,13 @@
 /*   By: danielakucharova <danielakucharova@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 17:53:47 by danielakuch       #+#    #+#             */
-/*   Updated: 2025/11/23 17:55:13 by danielakuch      ###   ########.fr       */
+/*   Updated: 2025/11/26 20:47:19 by danielakuch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+//Allocates memory (using malloc(3)) and returns a
+// copy of ’s1’ with characters from ’set’ removed
+// from the beginning and the end.
 
 #include "libft.h"
 
