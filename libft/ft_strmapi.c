@@ -6,9 +6,15 @@
 /*   By: danielakucharova <danielakucharova@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 17:52:49 by danielakuch       #+#    #+#             */
-/*   Updated: 2025/11/23 17:52:51 by danielakuch      ###   ########.fr       */
+/*   Updated: 2025/11/27 00:00:52 by danielakuch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+// Applies the function f to each character of the
+// string s, passing its index as the first argument
+// and the character itself as the second. A new
+// string is created (using malloc(3)) to store the
+// results from the successive applications of f.
 
 #include "libft.h"
 

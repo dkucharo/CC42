@@ -6,9 +6,11 @@
 /*   By: danielakucharova <danielakucharova@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 17:51:49 by danielakuch       #+#    #+#             */
-/*   Updated: 2025/11/23 17:51:50 by danielakuch      ###   ########.fr       */
+/*   Updated: 2025/11/27 00:13:33 by danielakuch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+//Outputs the character ’c’ to the specified file descriptor
 
 #include "libft.h"
 

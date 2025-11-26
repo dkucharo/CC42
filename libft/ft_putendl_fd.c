@@ -6,9 +6,11 @@
 /*   By: danielakucharova <danielakucharova@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 17:51:45 by danielakuch       #+#    #+#             */
-/*   Updated: 2025/11/23 17:51:46 by danielakuch      ###   ########.fr       */
+/*   Updated: 2025/11/27 00:16:17 by danielakuch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+// outputs the string ’s’ to the specified file descriptor
 
 #include "libft.h"
 
