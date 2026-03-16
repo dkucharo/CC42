@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danielakucharova <danielakucharova@stud    +#+  +:+       +#+        */
+/*   By: dkucharo <dkucharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/05 13:21:37 by danielakuch       #+#    #+#             */
-/*   Updated: 2025/12/06 17:04:18 by danielakuch      ###   ########.fr       */
+/*   Created: 2026/03/15 20:16:40 by dkucharo          #+#    #+#             */
+/*   Updated: 2026/03/15 20:16:44 by dkucharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,17 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	substr[i] = '\0';
 	return (substr);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s)
+	{
+		if (*s == (char)c)
+			return ((char *)s);
+		s++;
+	}
+	if (!(char)c)
+		return ((char *)s);
+	return (NULL);
 }

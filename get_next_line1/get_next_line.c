@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danielakucharova <danielakucharova@stud    +#+  +:+       +#+        */
+/*   By: dkucharo <dkucharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/05 13:21:43 by danielakuch       #+#    #+#             */
-/*   Updated: 2025/12/06 17:03:42 by danielakuch      ###   ########.fr       */
+/*   Created: 2026/03/15 20:16:47 by dkucharo          #+#    #+#             */
+/*   Updated: 2026/03/16 16:16:44 by dkucharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,20 @@
 
 static char	*ft_join_buffer(char *left_c, char *buffer)
 {
-	char	*tmp;
+	char	*res;
 
 	if (!left_c)
-		left_c = ft_strdup("");
-	if (!left_c)
-		return (NULL);
-	tmp = left_c;
-	left_c = ft_strjoin(tmp, buffer);
-	free(tmp);
-	return (left_c);
+	{
+		left_c = malloc(1 * sizeof(char));
+		if (!left_c)
+			return NULL;
+		left_c[0] = '\0';
+	}
+	if (!buffer)
+		return NULL;
+	res = ft_strjoin(left_c, buffer);
+	free(left_c);
+	return (res);
 }
 //fills the line buffer
 // reads the BUFFER_SIZE chars in each iter till \n or \0 in the line buffer
@@ -36,13 +40,14 @@ static char	*fill_line_buffer(int fd, char *left_c, char *buffer)
 {
 	ssize_t	b_read;
 
+	if (left_c && ft_strchr(left_c, '\n'))
+		return (left_c);
 	b_read = 1;
 	while (b_read > 0)
 	{
 		b_read = read(fd, buffer, BUFFER_SIZE);
 		if (b_read == -1)
 		{
-			free(left_c);
 			return (NULL);
 		}
 		if (b_read == 0)
@@ -51,7 +56,7 @@ static char	*fill_line_buffer(int fd, char *left_c, char *buffer)
 		left_c = ft_join_buffer(left_c, buffer);
 		if (!left_c)
 			return (NULL);
-		if (ft_strchr(buffer, '\n'))
+		if (ft_strchr(left_c, '\n'))
 			break ;
 	}
 	return (left_c);
@@ -112,6 +117,8 @@ char	*get_next_line(int fd)
 	free(buffer);
 	buffer = NULL;
 	if (!line)
+		free(left_c);
+		left_c = NULL;
 		return (NULL);
 	left_c = set_line(line);
 	return (line);
