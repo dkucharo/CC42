@@ -26,6 +26,8 @@ static char	*ft_join_buffer(char *left_c, char *buffer)
 	if (!buffer)
 		return NULL;
 	res = ft_strjoin(left_c, buffer);
+	if (!res)
+		return (NULL);
 	free(left_c);
 	return (res);
 }
@@ -103,16 +105,15 @@ char	*get_next_line(int fd)
 	char		*buffer;
 
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!buffer)
+		return (NULL);
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
 		free(left_c);
 		free(buffer);
 		left_c = NULL;
-		buffer = NULL;
 		return (NULL);
 	}
-	if (!buffer)
-		return (NULL);
 	line = fill_line_buffer(fd, left_c, buffer);
 	free(buffer);
 	buffer = NULL;
