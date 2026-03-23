@@ -41,7 +41,6 @@ static char	*ft_join_buffer(char *left_c, char *buffer)
 static char	*fill_line_buffer(int fd, char *left_c, char *buffer)
 {
 	ssize_t	b_read;
-
 	if (left_c && ft_strchr(left_c, '\n'))
 		return (left_c);
 	b_read = 1;
@@ -49,16 +48,14 @@ static char	*fill_line_buffer(int fd, char *left_c, char *buffer)
 	{
 		b_read = read(fd, buffer, BUFFER_SIZE);
 		if (b_read == -1)
-		{
 			return (NULL);
-		}
 		if (b_read == 0)
 			break ;
 		buffer[b_read] = '\0';
 		left_c = ft_join_buffer(left_c, buffer);
 		if (!left_c)
 			return (NULL);
-		if (ft_strchr(left_c, '\n'))
+		if (ft_strchr(buffer, '\n')) 
 			break ;
 	}
 	return (left_c);
@@ -118,9 +115,11 @@ char	*get_next_line(int fd)
 	free(buffer);
 	buffer = NULL;
 	if (!line)
+	{
 		free(left_c);
 		left_c = NULL;
 		return (NULL);
+	}
 	left_c = set_line(line);
 	return (line);
 }
