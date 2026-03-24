@@ -6,7 +6,7 @@
 /*   By: dkucharo <dkucharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 20:33:57 by dkucharo          #+#    #+#             */
-/*   Updated: 2026/03/15 20:47:17 by dkucharo         ###   ########.fr       */
+/*   Updated: 2026/03/24 22:31:10 by dkucharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ int main(void)
 	fd = open("test.txt", O_RDONLY);
 	if (fd == -1)
 	{
-		printf("Chyba pri otevirani souboru!\n");
+		printf("Cannot open the file!\n");
 		return (1);
 	}
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		printf("GNL: %s", line);
+		printf("Line: %s", line);
 		free(line);
 	}
 	close(fd);

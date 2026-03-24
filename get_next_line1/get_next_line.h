@@ -5,20 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkucharo <dkucharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/15 20:16:21 by dkucharo          #+#    #+#             */
-/*   Updated: 2026/03/15 20:30:05 by dkucharo         ###   ########.fr       */
+/*   Created: 2026/03/24 22:22:25 by dkucharo          #+#    #+#             */
+/*   Updated: 2026/03/24 22:25:04 by dkucharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 42
-#endif
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
 # include <unistd.h>
 # include <stdlib.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 char	*get_next_line(int fd);
 size_t	ft_strlen(const char *s);

@@ -7,7 +7,7 @@ The goal of this project is to create a function that returns a line read from a
 # Instructions
 
 **Compilation**
-* Compile with: `cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 get_next_line.c get_next_line.h get_next_line_utils.c`
+* Compile with: `cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c main.c -o gnl`
 
 **Requirements**
 * Files to submit: get_next_line.c, get_next_line_utils.c, get_next_line.h.

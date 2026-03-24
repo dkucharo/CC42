@@ -6,7 +6,7 @@
 /*   By: dkucharo <dkucharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 20:16:47 by dkucharo          #+#    #+#             */
-/*   Updated: 2026/03/16 16:16:44 by dkucharo         ###   ########.fr       */
+/*   Updated: 2026/03/24 22:32:27 by dkucharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,33 @@
 
 static char	*ft_join_buffer(char *left_c, char *buffer)
 {
+	size_t	i;
+	size_t	j;
 	char	*res;
 
 	if (!left_c)
-	{
-		left_c = malloc(1 * sizeof(char));
-		if (!left_c)
-			return NULL;
-		left_c[0] = '\0';
-	}
-	if (!buffer)
-		return NULL;
-	res = ft_strjoin(left_c, buffer);
+		return (ft_strdup(buffer));
+	res = malloc(sizeof(char) * (ft_strlen(left_c) + ft_strlen(buffer) + 1));
 	if (!res)
+	{
+		free(left_c);
 		return (NULL);
+	}
+	i = -1;
+	while (left_c[++i])
+		res[i] = left_c[i];
+	j = 0;
+	while (buffer[j])
+		res[i++] = buffer[j++];
+	res[i] = '\0';
 	free(left_c);
 	return (res);
 }
-//fills the line buffer
-// reads the BUFFER_SIZE chars in each iter till \n or \0 in the line buffer
-// each time checks for data in the left_c buffer - if there is, it appends the
-// new read chars to it; if not, it duplicates the content of the read buffer 
-// into the left_c buffer. if \n is found, it breaks out of the loop and returns
-// the left_c buffer after appending the read chars to it
 
 static char	*fill_line_buffer(int fd, char *left_c, char *buffer)
 {
 	ssize_t	b_read;
+
 	if (left_c && ft_strchr(left_c, '\n'))
 		return (left_c);
 	b_read = 1;
@@ -48,52 +48,38 @@ static char	*fill_line_buffer(int fd, char *left_c, char *buffer)
 	{
 		b_read = read(fd, buffer, BUFFER_SIZE);
 		if (b_read == -1)
+		{
+			free(left_c);
 			return (NULL);
+		}
 		if (b_read == 0)
 			break ;
 		buffer[b_read] = '\0';
 		left_c = ft_join_buffer(left_c, buffer);
 		if (!left_c)
 			return (NULL);
-		if (ft_strchr(buffer, '\n')) 
+		if (ft_strchr(buffer, '\n'))
 			break ;
 	}
 	return (left_c);
 }
-// takes buffer as a parameter, reads it till \n or \0
-// sets at the end of the line_buffer a \0 
-// returns a substring(left c) from the end of the line to the end of the buffer
 
 static char	*set_line(char *line_buffer)
 {
-	char	*left_c;
+	char	*rem;
 	size_t	i;
-	size_t	buffer_len;
 
 	i = 0;
-	buffer_len = ft_strlen(line_buffer);
-	while (line_buffer[i] != '\n' && line_buffer[i] != '\0')
+	while (line_buffer[i] && line_buffer[i] != '\n')
 		i++;
-	if (line_buffer[i] == '\0')
+	if (!line_buffer[i] || !line_buffer[i + 1])
 		return (NULL);
-	left_c = ft_substr(line_buffer, i + 1, buffer_len - (i + 1));
-	if (!left_c)
+	rem = ft_strdup(line_buffer + i + 1);
+	if (!rem)
 		return (NULL);
-	if (*left_c == 0)
-	{
-		free(left_c);
-		left_c = NULL;
-	}
 	line_buffer[i + 1] = '\0';
-	return (left_c);
+	return (rem);
 }
-
-//check for wrong malloc etc
-// calls fill_line_buffer to read in the fd till \n or \0
-// when variable is filled, free the buffer
-// after we set_line and return the line, storing the return value of 
-// set_line in a static variable - so next tume we call the get_next_line 
-// we have access to the first char of the line that may have been read before
 
 char	*get_next_line(int fd)
 {
@@ -101,25 +87,50 @@ char	*get_next_line(int fd)
 	char		*line;
 	char		*buffer;
 
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return (NULL);
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
-	{
-		free(left_c);
-		free(buffer);
-		left_c = NULL;
-		return (NULL);
-	}
 	line = fill_line_buffer(fd, left_c, buffer);
 	free(buffer);
-	buffer = NULL;
 	if (!line)
 	{
-		free(left_c);
 		left_c = NULL;
 		return (NULL);
 	}
 	left_c = set_line(line);
 	return (line);
 }
+
+// main.c
+// #include "get_next_line.h"
+// #include <fcntl.h>
+// #include <stdio.h>
+// #include <stdlib.h>
+
+// int main(void)
+// {
+// 	int fd;
+// 	char *line;
+
+// 	fd = open("test.txt", O_RDONLY);
+// 	if (fd == -1)
+// 	{
+// 		printf("Cannot open the file!\n");
+// 		return (1);
+// 	}
+// 	while ((line = get_next_line(fd)) != NULL)
+// 	{
+// 		printf("Line: %s", line);
+// 		free(line);
+// 	}
+// 	close(fd);
+// 	return 0;
+// }
+
+// test.txt
+// Hi this is the first line of this file.
+// This is the second line.
+// And this is the last line of this file, it has only three lines.
+// HAHAHA just kidding, it has four lines.

@@ -1,0 +1,19 @@
+get_next_line.c: Error!
+Error: WRONG_SCOPE_COMMENT  (line:  24, col:   5):	[95mComment is invalid in this scope[0m
+Error: LINE_TOO_LONG        (line:  46, col:   5):	[94mline too long[0m
+Error: WRONG_SCOPE_COMMENT  (line:  46, col:   5):	[95mComment is invalid in this scope[0m
+Error: LINE_TOO_LONG        (line:  46, col:  92):	[94mline too long[0m
+Error: WRONG_SCOPE_COMMENT  (line:  64, col:  38):	[95mComment is invalid in this scope[0m
+Error: WRONG_SCOPE_COMMENT  (line:  64, col:  38):	[95mComment is invalid in this scope[0m
+Error: WRONG_SCOPE_COMMENT  (line:  76, col:   5):	[95mComment is invalid in this scope[0m
+Error: WRONG_SCOPE_COMMENT  (line:  79, col:   5):	[95mComment is invalid in this scope[0m
+Error: WRONG_SCOPE_COMMENT  (line:  82, col:   5):	[95mComment is invalid in this scope[0m
+Error: WRONG_SCOPE_COMMENT  (line:  86, col:   5):	[95mComment is invalid in this scope[0m
+Error: BRACE_SHOULD_EOL     (line: 111, col:   1):	Expected newline after brace
+get_next_line.h: Error!
+Error: HEADER_PROT_NAME     (line:  13, col:   9):	Wrong header protection name
+Error: HEADER_PROT_NODEF    (line:  15, col:   1):	Header protection not containing #define
+Error: HEADER_PROT_ALL_AF   (line:  17, col:   1):	Instructions after header protection are forbidden
+Error: HEADER_PROT_MULT     (line:  17, col:   1):	Multiple header protections, only one is allowed
+get_next_line_utils.c: Error!
+Error: BRACE_SHOULD_EOL     (line:  86, col:   1):	Expected newline after brace
