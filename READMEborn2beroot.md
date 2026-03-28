@@ -2,13 +2,20 @@
 
 # Description
 
-Debian 13.4
-RAM 2048 MB
-Processors 1 CPU
+* Operating system: 13.4
+* RAM: 2048 MB
+* Processors: 1 CPU
+
+![alt text](image-1.png)
 
 # Instructions
 
 # Recources
+
+* `https://github.com/Vikingu-del/Born2beRoot`
+* `https://noreply.gitbook.io/born2beroot`
+* `https://github.com/chlimous/42-born2beroot_guide`
+* `notebooklm.google.com`
 
 
 DEBIAN OR ROCKY LINUX
@@ -25,11 +32,6 @@ Based on the requirements provided in the subject, Debian is highly recommended 
 
 5- Compatibility with Project Requirements: Debian aligns well with the project's requirements, including setting up encrypted partitions using LVM, implementing a strong password policy, configuring sudo, setting up SSH with restricted access, and configuring the firewall using UFW.
 
-6- Bonus Part Consideration: If you decide to pursue the bonus part of the project, Debian provides a stable platform for setting up additional services such as WordPress or a custom service of your choice.
-
-7- The latest version now that im writing this guide is Debian 12.5. Go to this link to download Debian image - https://www.debian.org/download.
-
-![alt text](image-1.png)
 
 Partitioning is essential for organizing disk space on your server. It divides the disk into separate sections, each serving a specific purpose.
 
@@ -77,13 +79,15 @@ We will select Yes to install GRUB boot on the hard drive. GRUB plays a crucial 
 * enforce_for_root: Enforces these password policies for the root user, enhancing security even for privileged accounts.
 
 **GID**
-* Ever heard of GID? It stands for Group Identifier, abbreviated as Group ID. Essentially, it's a unique identifier assigned to a group 🆔 in a Unix-like operating system. Just like how each user has a UID (User ID), each group gets its own GID. This identifier helps the system manage permissions and access control, allowing users within the same group to share resources and collaborate effectively. So, think of GID as the group's digital fingerprint—it ensures smooth coordination and organization within the operating system!
+* Group Identifier or Group ID; unique identifier assigned to a group ID; each user has a UID (User ID), each group gets its own GID; it helps the system manage permissions and access control, allowing users within the same group to share resources and collaborate effectively; it's essentially a group's digital fingerprint and it ensures smooth coordination and organization within the operating system
 
-* `sudo adduser <login>` add user, if user exists it shows error and says it exists already
+* `sudo useradd <login>` add user, if user exists it shows error and says it exists already
+* adduser vs useradd - adduser needs more info bc it uses GECOS which needs more information; if I do not want that, I can use useradd and it adds the user with no more questions
 * `sudo addgroup user42` add group, if group exists it shows error and says it exists already
 * `getent group <groupname>` check status of group
 * `sudo adduser <username> <groupname>` adds user to group
 * `getent group sudo user42` - check what users are in groups sudo and user42
+* `sudo deluser <username>` - deletes user's account but leaves their files
 * what means the sudo:x:27:dkucharo and user42:x:1001:dkucharo??
 
 **SSH**
